@@ -1,2 +1,80 @@
 # git-credential-outlook
-A Git credential helper to get OAauth2 token for free Microsoft Outlook accounts
+
+A Git credential helper to get OAauth2 token for free Microsoft Outlook accounts, required for `git send-email`
+
+## How does this work?
+
+It is a simple python script, based on https://github.com/ag91/M365-IMAP. It does the following:
+
+- Uses Thunderbird's client ID to authenticate with Microsoft and retrieve a refresh token.
+- As per demand, it uses the refresh token to generate OAuth2 access tokens as and when required.
+- The refresh token is stored securely using the `keyring` module of pip. More information about this can be read from https://pypi.org/project/keyring/.
+
+## Installation
+
+- Download the python script `git-credential-outlook` from [here](https://raw.githubusercontent.com/AdityaGarg8/git-credential-outlook/refs/heads/main/git-credential-outlook).
+- Install `msal` and `keyring` pip modules:
+
+  On Ubuntu/Debian run:
+
+  ```bash
+  sudo apt-get install python3-msal python3-keyring
+  ```
+
+  On other distros:
+
+  ```bash
+  pip install msal keyring
+  ```
+
+- Place the script anywhere in your `$PATH`, like `/usr/local/bin`.
+- Restart your shell. Command `git credential-outlook` should start working. First run will show something like this:
+
+  ```bash
+  user@hostname:~$ git credential-outlook
+  No refresh token found. Please authenticate first.
+  ```
+
+## Setting up
+
+- First of all we need to authenticate with our Outlook credentials and get a refresh token. For that run:
+
+  ```bash
+  git credential-outlook --authenticate
+  ```
+
+  The output should be something like this:
+
+  ```bash
+  user@hostname:~$ git credential-outlook --authenticate
+  Choose an authentication method:
+  1. Open your browser and login.
+  2. Paste a device code manually on a webpage.
+  Enter 1 or 2:
+  ```
+- Here we have 2 methods, clearly mentioned in the above message. You simply have to follow the on-screen instructions after choosing any one.
+
+  **Note: The first method if choosen will show an error of certificate not being valid after authentication. This is normal and expected since a self generated SSL certificate has been used to authenticate here. You can safely proceed further here.**
+
+## Usage
+
+- Once authenticated, the refresh token gets saved in your keyring. You can run `git credential-outlook` to confirm the same. It's output should now show an access token.
+- Now run:
+
+  ```bash
+  git config --global --edit
+  ```
+
+  And add the following at the end:
+
+  ```config
+  [credential "smtp://smtp.office365.com:587"]
+        helper = outlook
+  [sendemail]
+        smtpEncryption = tls
+        smtpServer = smtp.office365.com
+        smtpUser = someone@outlook.com # Replace this with your email address.
+        smtpServerPort = 587
+        smtpauth = XOAUTH2
+  ```
+  **Note: Make sure you have atleast version 2.1800 of perl's [Authen::SASL](https://metacpan.org/dist/Authen-SASL) library in order to be able to use XOAUTH2**
