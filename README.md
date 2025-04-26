@@ -65,7 +65,7 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP. It doe
   git config --global --edit
   ```
 
-  And add the following at the end:
+  And add the following at the end to setup `git send-email`:
 
   ```config
   [credential "smtp://smtp.office365.com:587"]
