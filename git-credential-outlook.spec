@@ -5,7 +5,7 @@ Summary:        A git credential helper that uses Outlook credentials
 
 License:        MIT
 URL:            https://github.com/AdityaGarg8/git-credential-outlook
-Source0:        %{url}/archive/refs/tags/v1.0
+Source0:        %{url}/archive/refs/tags/v1.0.tar.gz
 
 BuildArch:      noarch
 Requires:       python3-msal
