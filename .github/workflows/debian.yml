@@ -61,4 +61,4 @@ jobs:
           gh release upload debian ./* --clobber -R AdityaGarg8/git-credential-outlook
         env:
           GPG_SIGNING_EMAIL: ${{ secrets.GPG_SIGNING_EMAIL }}
-          GH_TOKEN: ${{ secrets.PAT }
+          GH_TOKEN: ${{ secrets.PAT }}
