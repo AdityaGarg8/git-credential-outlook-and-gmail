@@ -46,7 +46,8 @@ Run the following to add the apt repo and install the `git-credential-outlook` p
 ```bash
 curl -L "https://github.com/AdityaGarg8/git-credential-outlook/releases/download/debian/KEY.gpg" \
 	| gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/git-credential-outlook.gpg >/dev/null \
-	&& echo "deb [signed-by=/etc/apt/trusted.gpg.d/git-credential-outlook.gpg] https://github.com/AdityaGarg8/git-credential-outlook/releases/download/debian ./" \
+	&& echo "deb [signed-by=/etc/apt/trusted.gpg.d/git-credential-outlook.gpg] \
+	https://github.com/AdityaGarg8/git-credential-outlook/releases/download/debian ./" \
 	| sudo tee -a /etc/apt/sources.list.d/git-credential-outlook.list \
 	&& sudo apt-get update \
 	&& sudo apt-get install -y git-credential-outlook
