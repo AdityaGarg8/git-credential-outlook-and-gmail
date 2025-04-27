@@ -49,6 +49,15 @@ curl -L "https://github.com/AdityaGarg8/git-credential-outlook/releases/download
 	&& sudo apt-get install -y git-credential-outlook
 ```
 
+#### Ubuntu/Debian
+
+Run the following to add the copr repo and install the `git-credential-outlook` package
+
+```bash
+sudo dnf copr enable adityagarg8/git-credential-outlook
+sudo dnf install -y git-credential-outlook
+```
+
 ## Setting up
 
 - First of all we need to authenticate with our Outlook credentials and get a refresh token. For that run:
