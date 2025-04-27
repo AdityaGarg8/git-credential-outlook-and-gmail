@@ -1,0 +1,64 @@
+---
+name: Release Debian/Ubuntu
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of the deb package'
+        required: true
+
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repo"
+        uses: actions/checkout@v4
+
+      - name: Configure GPG Key
+        run: |
+          echo -n "$GPG_SIGNING_KEY" | base64 -di | gpg --import
+        env:
+          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+
+      - name: Release
+        id: publish
+        run: |
+          sudo apt update
+          sudo apt install -y wget git gpg apt-utils dpkg-dev
+          cd ${{ github.workspace }}
+          mkdir -p ${{ github.workspace }}/cred/DEBIAN
+          mkdir -p ${{ github.workspace }}/cred/usr/bin
+          cp ./git-credential-outlook ./cred/usr/bin
+
+          cat <<EOF  > ./cred/DEBIAN/control
+          Package: git-credential-outlook
+          Version: {{ github.event.inputs.version }}
+          Section: utils
+          Priority: optional
+          Depends: python3-msal, python3-keyring
+          Enhances: git
+          Architecture: all
+          Maintainer: Aditya Garg <gargaditya08@live.com>
+          Description: Git credential helper for Microsoft Outlook accounts.
+          EOF
+
+          chmod a+x ./cred/DEBIAN/control
+          chmod a+x ./cred/usr/bin/git-credential-outlook
+
+          dpkg-deb --build --root-owner-group -Zgzip cred
+          dpkg-name cred.deb
+
+          gh release download debian -D debian -R AdityaGarg8/git-credential-outlook
+          mv -v ./*.deb ./debian
+          cd debian
+          dpkg-scanpackages --multiversion . > Packages
+          gzip -k -f Packages
+
+          apt-ftparchive release . > Release
+          gpg --default-key "${GPG_SIGNING_EMAIL}" -abs -o - Release > Release.gpg
+          gpg --default-key "${GPG_SIGNING_EMAIL}" --clearsign -o - Release > InRelease
+          gh release upload debian ./* --clobber -R AdityaGarg8/git-credential-outlook
+        env:
+          GPG_SIGNING_EMAIL: ${{ secrets.GPG_SIGNING_EMAIL }}
+          GH_TOKEN: ${{ secrets.PAT }
