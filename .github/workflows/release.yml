@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: "Checkout Repo"
         uses: actions/checkout@v4
+        with:
+          fetch-tags: true
 
       - name: Configure GPG Key
         run: |
@@ -26,6 +28,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y wget git gpg apt-utils dpkg-dev
+          git checkout v${{ github.event.inputs.version }}
           cd ${{ github.workspace }}
           mkdir -p ${{ github.workspace }}/cred/DEBIAN
           mkdir -p ${{ github.workspace }}/cred/usr/bin
@@ -79,7 +82,7 @@ jobs:
 
           License:        MIT
           URL:            https://github.com/AdityaGarg8/git-credential-outlook
-          Source0:        %{url}/archive/refs/heads/main.tar.gz
+          Source0:        %{url}/archive/refs/tags/v${{ github.event.inputs.version }}
 
           BuildArch:      noarch
           Requires:       python3-msal
@@ -89,7 +92,7 @@ jobs:
           Git credential helper for Microsoft Outlook accounts.
 
           %prep
-          %autosetup -n git-credential-outlook-main
+          %autosetup
 
           %build
 
