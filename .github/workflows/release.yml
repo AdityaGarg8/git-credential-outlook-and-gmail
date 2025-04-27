@@ -1,5 +1,5 @@
 ---
-name: Release Debian/Ubuntu
+name: Release
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
         required: true
 
 jobs:
-  Release:
+  Release-Debian:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout Repo"
@@ -62,3 +62,52 @@ jobs:
         env:
           GPG_SIGNING_EMAIL: ${{ secrets.GPG_SIGNING_EMAIL }}
           GH_TOKEN: ${{ secrets.PAT }}
+  Release-Fedora:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repo"
+        uses: actions/checkout@v4
+
+      - name: Release
+        id: publish
+        run: |
+          cat <<EOF  > ./git-credential-outlook.spec
+          Name:           git-credential-outlook
+          Version:        ${{ github.event.inputs.version }}
+          Release:        1%{?dist}
+          Summary:        A git credential helper that uses Outlook credentials
+
+          License:        MIT
+          URL:            https://github.com/AdityaGarg8/git-credential-outlook
+          Source0:        %{url}/archive/refs/heads/main.tar.gz
+
+          BuildArch:      noarch
+          Requires:       python3-msal
+          Requires:       python3-keyring
+
+          %description
+          Git credential helper for Microsoft Outlook accounts.
+
+          %prep
+          %autosetup
+
+          %build
+
+          %install
+          install -D -m0755 git-credential-outlook %{buildroot}%{_bindir}/git-credential-outlook
+
+          %files
+          %license LICENSE
+          %doc README.md
+          %{_bindir}/git-credential-outlook
+          EOF
+      - name: Push changes to the repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PAT }}
+          branch: ${{ github.ref }}
+      - name: "Trigger COPR webhook"
+        run: |
+          curl -sS -X POST $COPR_WEBHOOK/git-credential-outlook
+        env:
+          COPR_WEBHOOK: ${{ secrets.COPR_WEBHOOK }}
