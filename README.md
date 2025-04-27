@@ -12,6 +12,8 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP. It doe
 
 ## Installation
 
+### All platforms
+
 - Download the python script `git-credential-outlook` from [here](https://raw.githubusercontent.com/AdityaGarg8/git-credential-outlook/refs/heads/main/git-credential-outlook).
 - Install `msal` and `keyring` pip modules:
 
@@ -34,6 +36,19 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP. It doe
   user@hostname:~$ git credential-outlook
   No refresh token found. Please authenticate first.
   ```
+
+### Linux
+
+#### Ubuntu/Debian
+
+Run the following to add the apt repo and install the `git-credential-outlook` package
+
+```bash
+curl -s --compressed "https://github.com/AdityaGarg8/git-credential-outlook/releases/download/debian/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/git-credential-outlook.gpg >/dev/null
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/git-credential-outlook.gpg] https://github.com/AdityaGarg8/git-credential-outlook/releases/download/debian ./" | sudo tee -a /etc/apt/sources.list.d/git-credential-outlook.list
+sudo apt-get update
+sudo apt-get install -y git-credential-outlook
+```
 
 ## Setting up
 
