@@ -15,7 +15,7 @@ jobs:
       - name: "Checkout Repo"
         uses: actions/checkout@v4
         with:
-          fetch-tags: true
+          ref: v${{ github.event.inputs.version }}
 
       - name: Configure GPG Key
         run: |
@@ -82,7 +82,7 @@ jobs:
 
           License:        MIT
           URL:            https://github.com/AdityaGarg8/git-credential-outlook
-          Source0:        %{url}/archive/refs/tags/v${{ github.event.inputs.version }}
+          Source0:        %{url}/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
 
           BuildArch:      noarch
           Requires:       python3-msal
