@@ -32,12 +32,6 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP. It doe
   ```
 
 - Place the script anywhere in your `$PATH`, like `/usr/local/bin`.
-- Restart your shell. Command `git credential-outlook` should start working. First run will show something like this:
-
-  ```bash
-  user@hostname:~$ git credential-outlook
-  No refresh token found. Please authenticate first.
-  ```
 
 ### Linux
 
