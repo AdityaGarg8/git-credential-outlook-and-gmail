@@ -33,7 +33,7 @@ jobs:
 
           cat <<EOF  > ./cred/DEBIAN/control
           Package: git-credential-outlook
-          Version: {{ github.event.inputs.version }}
+          Version: ${{ github.event.inputs.version }}
           Section: utils
           Priority: optional
           Depends: python3-msal, python3-keyring
