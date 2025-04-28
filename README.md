@@ -25,6 +25,12 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP. It doe
   sudo apt-get install python3-msal python3-keyring
   ```
 
+  On Fedora run:
+
+  ```bash
+  sudo dnf install python-msal python-keyring
+  ```
+
   On other distros:
 
   ```bash
