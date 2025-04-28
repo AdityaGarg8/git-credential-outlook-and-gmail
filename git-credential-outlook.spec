@@ -8,8 +8,8 @@ URL:            https://github.com/AdityaGarg8/git-credential-outlook
 Source0:        %{url}/archive/refs/tags/v1.1.tar.gz
 
 BuildArch:      noarch
-Requires:       python3-msal
-Requires:       python3-keyring
+Requires:       python-msal
+Requires:       python-keyring
 
 %description
 Git credential helper for Microsoft Outlook accounts.
