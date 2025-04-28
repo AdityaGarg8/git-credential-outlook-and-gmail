@@ -85,8 +85,8 @@ jobs:
           Source0:        %{url}/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
 
           BuildArch:      noarch
-          Requires:       python3-msal
-          Requires:       python3-keyring
+          Requires:       python-msal
+          Requires:       python-keyring
 
           %description
           Git credential helper for Microsoft Outlook accounts.
