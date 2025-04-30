@@ -67,7 +67,7 @@ curl -L "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/release
 Run the following to add the copr repo and install the `git-credential-outlook` package
 
 ```bash
-sudo dnf copr enable adityagarg8/git-credential-outlook-and-gmail
+sudo dnf copr enable -y adityagarg8/git-credential-outlook-and-gmail
 sudo dnf install -y git-credential-outlook
 ```
 
