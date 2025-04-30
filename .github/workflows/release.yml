@@ -74,7 +74,6 @@ jobs:
       - name: Release
         id: publish
         run: |
-          mv 
           cat <<EOF  > ./git-credential-outlook.spec
           Name:           git-credential-outlook
           Version:        ${{ github.event.inputs.version }}
