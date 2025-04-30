@@ -1,8 +1,10 @@
-# git-credential-outlook
+# git-credential-outlook-and-gmail
 
-A Git credential helper to get OAauth2 token for free Microsoft Outlook accounts.
+A Git credential helper to get OAauth2 token for Microsoft Outlook and Gmail accounts.
 
 It is required for `git send-email` since Outlook no longer supports app passwords.
+
+**NOTE: Gmail support is WIP, Outlook is currently available**
 
 ## How does this work?
 
