@@ -53,21 +53,21 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP. It doe
 Run the following to add the apt repo and install the `git-credential-outlook` package
 
 ```bash
-curl -L "https://github.com/AdityaGarg8/git-credential-outlook/releases/download/debian/KEY.gpg" \
-	| gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/git-credential-outlook.gpg >/dev/null \
-	&& echo "deb [signed-by=/etc/apt/trusted.gpg.d/git-credential-outlook.gpg] \
-	https://github.com/AdityaGarg8/git-credential-outlook/releases/download/debian ./" \
-	| sudo tee -a /etc/apt/sources.list.d/git-credential-outlook.list \
+curl -L "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/download/debian/KEY.gpg" \
+	| gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/git-credential-outlook-and-gmail.gpg >/dev/null \
+	&& echo "deb [signed-by=/etc/apt/trusted.gpg.d/git-credential-outlook-and-gmail.gpg] \
+	https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/download/debian ./" \
+	| sudo tee -a /etc/apt/sources.list.d/git-credential-outlook-and-gmail.list \
 	&& sudo apt-get update \
 	&& sudo apt-get install -y git-credential-outlook
 ```
 
-#### Ubuntu/Debian
+#### Fedora
 
 Run the following to add the copr repo and install the `git-credential-outlook` package
 
 ```bash
-sudo dnf copr enable adityagarg8/git-credential-outlook
+sudo dnf copr enable adityagarg8/git-credential-outlook-and-gmail
 sudo dnf install -y git-credential-outlook
 ```
 
