@@ -1,5 +1,5 @@
 ---
-name: Release
+name: Release - Outlook
 
 on:
   workflow_dispatch:
@@ -52,7 +52,7 @@ jobs:
           dpkg-deb --build --root-owner-group -Zgzip cred
           dpkg-name cred.deb
 
-          gh release download debian -D debian -R AdityaGarg8/git-credential-outlook
+          gh release download debian -D debian -R AdityaGarg8/git-credential-outlook-and-gmail
           mv -v ./*.deb ./debian
           cd debian
           dpkg-scanpackages --multiversion . > Packages
@@ -61,7 +61,7 @@ jobs:
           apt-ftparchive release . > Release
           gpg --default-key "${GPG_SIGNING_EMAIL}" -abs -o - Release > Release.gpg
           gpg --default-key "${GPG_SIGNING_EMAIL}" --clearsign -o - Release > InRelease
-          gh release upload debian ./* --clobber -R AdityaGarg8/git-credential-outlook
+          gh release upload debian ./* --clobber -R AdityaGarg8/git-credential-outlook-and-gmail
         env:
           GPG_SIGNING_EMAIL: ${{ secrets.GPG_SIGNING_EMAIL }}
           GH_TOKEN: ${{ secrets.PAT }}
@@ -74,6 +74,7 @@ jobs:
       - name: Release
         id: publish
         run: |
+          mv 
           cat <<EOF  > ./git-credential-outlook.spec
           Name:           git-credential-outlook
           Version:        ${{ github.event.inputs.version }}
@@ -81,7 +82,7 @@ jobs:
           Summary:        A git credential helper that uses Outlook credentials
 
           License:        MIT
-          URL:            https://github.com/AdityaGarg8/git-credential-outlook
+          URL:            https://github.com/AdityaGarg8/git-credential-outlook-and-gmail
           Source0:        %{url}/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
 
           BuildArch:      noarch
@@ -100,7 +101,7 @@ jobs:
           install -D -m0755 git-credential-outlook %{buildroot}%{_bindir}/git-credential-outlook
 
           %files
-          %license LICENSE
+          %license LICENSE.outlook
           %doc README.md
           %{_bindir}/git-credential-outlook
           EOF
@@ -116,6 +117,6 @@ jobs:
           branch: ${{ github.ref }}
       - name: "Trigger COPR webhook"
         run: |
-          curl -sS -X POST $COPR_WEBHOOK/git-credential-outlook
+          curl -sS -X POST $COPR_WEBHOOK/git-credential-outlook-and-gmail
         env:
           COPR_WEBHOOK: ${{ secrets.COPR_WEBHOOK }}
