@@ -15,7 +15,7 @@ Requires:       python-keyring
 Git credential helper for Microsoft Outlook accounts.
 
 %prep
-%autosetup
+%autosetup -n git-credential-outlook-and-gmail-1.1
 
 %build
 
