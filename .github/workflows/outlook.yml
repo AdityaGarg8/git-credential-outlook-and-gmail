@@ -116,6 +116,6 @@ jobs:
           branch: ${{ github.ref }}
       - name: "Trigger COPR webhook"
         run: |
-          curl -sS -X POST $COPR_WEBHOOK/git-credential-outlook-and-gmail
+          curl -sS -X POST $COPR_WEBHOOK/git-credential-outlook
         env:
           COPR_WEBHOOK: ${{ secrets.COPR_WEBHOOK }}
