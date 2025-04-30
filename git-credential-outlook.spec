@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        A git credential helper that uses Outlook credentials
 
 License:        MIT
-URL:            https://github.com/AdityaGarg8/git-credential-outlook
+URL:            https://github.com/AdityaGarg8/git-credential-outlook-and-gmail
 Source0:        %{url}/archive/refs/tags/v1.1.tar.gz
 
 BuildArch:      noarch
@@ -23,6 +23,6 @@ Git credential helper for Microsoft Outlook accounts.
 install -D -m0755 git-credential-outlook %{buildroot}%{_bindir}/git-credential-outlook
 
 %files
-%license LICENSE
+%license LICENSE.outlook
 %doc README.md
 %{_bindir}/git-credential-outlook
