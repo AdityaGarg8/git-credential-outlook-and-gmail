@@ -92,7 +92,7 @@ jobs:
           Git credential helper for Microsoft Outlook accounts.
 
           %prep
-          %autosetup
+          %autosetup -n git-credential-outlook-and-gmail-${{ github.event.inputs.version }}
 
           %build
 
