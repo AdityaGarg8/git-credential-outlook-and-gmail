@@ -23,7 +23,7 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP. It doe
 
 ### All platforms
 
-- Download the python script `git-credential-outlook` from [here](https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/latest).
+- Download the python script `git-credential-outlook` from [here](https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/blob/main/git-credential-outlook).
 
 - Make sure that the script is [located in the path](https://superuser.com/a/284351/62691) and [is executable](https://askubuntu.com/a/229592/18504).
 
