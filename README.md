@@ -9,11 +9,9 @@ This repo contains 2 helpers:
 
 They can be used with `git send-email`, especially when Outlook no longer supports app passwords.
 
-**NOTE: Gmail support is WIP, Outlook is currently available**
-
 ## How does this work?
 
-It is a simple python script, based on https://github.com/ag91/M365-IMAP. It does the following:
+It is a simple python script, based on https://github.com/ag91/M365-IMAP and https://github.com/google/gmail-oauth2-tools/blob/master/python/oauth2.py. It does the following:
 
 - Uses Thunderbird's client ID to authenticate with Microsoft and retrieve a refresh token.
 - As per demand, it uses the refresh token to generate OAuth2 access tokens as and when required.
@@ -23,21 +21,27 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP. It doe
 
 ### All platforms
 
-- Download the python script `git-credential-outlook` from [here](https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/blob/main/git-credential-outlook).
+- Download the python script `git-credential-outlook` and/or `git-credential-gmail `from [here](https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/latest).
 
 - Make sure that the script is [located in the path](https://superuser.com/a/284351/62691) and [is executable](https://askubuntu.com/a/229592/18504).
 
 - Install the required pip modules:
 
   ```bash
-  pip install msal keyring trustme PyQt6 PyQt6-WebEngine
+  pip install keyring PyQt6 PyQt6-WebEngine
+  ```
+
+- For **Outlook**, you also need to install these modules:
+
+  ```bash
+  pip install msal trustme
   ```
 
 ### Linux
 
 #### Ubuntu/Debian
 
-Run the following to add the apt repo and install the `git-credential-outlook` package
+Run the following to add the apt repo and install the `git-credential-outlook` and `git-credential-gmail` package:
 
 ```bash
 curl -L "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/download/debian/KEY.gpg" \
@@ -46,19 +50,21 @@ curl -L "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/release
 	https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/download/debian ./" \
 	| sudo tee -a /etc/apt/sources.list.d/git-credential-outlook-and-gmail.list \
 	&& sudo apt-get update \
-	&& sudo apt-get install -y git-credential-outlook
+	&& sudo apt-get install -y git-credential-outlook git-credential-gmail
 ```
 
 #### Fedora
 
-Run the following to add the copr repo and install the `git-credential-outlook` package
+Run the following to add the copr repo and install the `git-credential-outlook` and `git-credential-gmail` package:
 
 ```bash
 sudo dnf copr enable -y adityagarg8/git-credential-outlook-and-gmail
-sudo dnf install -y git-credential-outlook
+sudo dnf install -y git-credential-outlook git-credential-gmail
 ```
 
 ## Setting up
+
+### Outlook
 
 - First of all we need to authenticate with our Outlook credentials and get a refresh token. For that run:
 
@@ -71,9 +77,20 @@ sudo dnf install -y git-credential-outlook
   git credential-outlook --authenticate --device
   ```
 
+### Gmail
+
+- Similar to Outlook, we need to get a refresh token for Gmail as well. For that run:
+
+  ```bash
+  git credential-gmail --authenticate
+  ```
+
+- Unlike Outlook, `--device` option is not available in Gmail.
+
 ## Usage
 
-- Once authenticated, the refresh token gets saved in your keyring. You can run `git credential-outlook` to confirm the same. It's output should now show an access token.
+- Once authenticated, the refresh token gets saved in your keyring. You can run `git credential-outlook` and/or `git credential-gmail` to confirm the same. It's output should now show an access token.
+
 - Now run:
 
   ```bash
@@ -81,6 +98,8 @@ sudo dnf install -y git-credential-outlook
   ```
 
   And add the following at the end to setup `git send-email`:
+
+### Outlook
 
   ```config
   [credential "smtp://smtp.office365.com:587"]
@@ -90,6 +109,20 @@ sudo dnf install -y git-credential-outlook
         smtpServer = smtp.office365.com
         smtpUser = someone@outlook.com # Replace this with your email address.
         smtpServerPort = 587
-        smtpauth = XOAUTH2
+        smtpAuth = XOAUTH2
   ```
-  **Note: Make sure you have atleast version 2.1800 of perl's [Authen::SASL](https://metacpan.org/dist/Authen-SASL) library in order to be able to use XOAUTH2**
+
+### Gmail
+
+  ```config
+  [credential "smtp://smtp.gmail.com:587"]
+        helper = gmail
+  [sendemail]
+        smtpEncryption = tls
+        smtpServer = smtp.gmail.com
+        smtpUser = someone@gmail.com # Replace this with your email address.
+        smtpServerPort = 587
+        smtpAuth = OAUTHBEARER
+  ```
+
+  **Note: Make sure you have atleast version 2.1800 of perl's [Authen::SASL](https://metacpan.org/dist/Authen-SASL) library in order to be able to use XOAUTH2 and OAUTHBEARER**

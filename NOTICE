@@ -1,0 +1,5 @@
+git-credential-outlook-and-gmail
+Copyright 2025 Aditya Garg
+
+This project contains code from Google's oauth2.py script (https://github.com/google/gmail-oauth2-tools/blob/master/python/oauth2.py).
+Copyright 2012 Google Inc. All Rights Reserved.
