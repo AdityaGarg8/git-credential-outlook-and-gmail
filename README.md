@@ -13,7 +13,7 @@ They can be used with `git send-email`, especially when Outlook no longer suppor
 
 It is a simple python script, based on https://github.com/ag91/M365-IMAP and https://github.com/google/gmail-oauth2-tools/blob/master/python/oauth2.py. It does the following:
 
-- Uses Thunderbird's client ID to authenticate with Microsoft and retrieve a refresh token.
+- Uses Thunderbird's client ID to authenticate with Microsoft/Google and retrieve a refresh token.
 - As per demand, it uses the refresh token to generate OAuth2 access tokens as and when required.
 - The refresh token is stored securely using the `keyring` module of pip. More information about this can be read from https://pypi.org/project/keyring/.
 
@@ -21,7 +21,7 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP and htt
 
 ### All platforms
 
-- Download the python script `git-credential-outlook` and/or `git-credential-gmail `from [here](https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/latest).
+- Download the python script `git-credential-outlook` and/or `git-credential-gmail` from [here](https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/latest).
 
 - Make sure that the script is [located in the path](https://superuser.com/a/284351/62691) and [is executable](https://askubuntu.com/a/229592/18504).
 
@@ -29,6 +29,12 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP and htt
 
   ```bash
   pip install keyring PyQt6 PyQt6-WebEngine
+  ```
+
+  **NOTE: DUE TO A [BUG](https://bugreports.qt.io/plugins/servlet/mobile#issue/QTBUG-135786) IN qt 6.9, THE AUTHENTICATION METHOD IS BROKEN FOR THIS PROJECT. APPARENTLY, IT HAS AFFECTED MANY qt6 BASED PROJECTS [(SEE THIS)](https://github.com/qutebrowser/qutebrowser/issues/8535). TILL THEN, INSTALL AN OLDER VERSION OF `PyQt6` and `PyQt6-WebEngine` by running:
+
+  ```bash
+  pip install PyQt6==6.8.1 PyQt6-WebEngine==6.8.0
   ```
 
 - For **Outlook**, you also need to install these modules:
