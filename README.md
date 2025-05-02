@@ -23,28 +23,15 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP. It doe
 
 ### All platforms
 
-- Download the python script `git-credential-outlook` from [here](https://raw.githubusercontent.com/AdityaGarg8/git-credential-outlook/refs/heads/main/git-credential-outlook).
-- Install `msal` and `keyring` pip modules:
+- Download the python script `git-credential-outlook` from [here](https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/latest).
 
-  On Ubuntu/Debian run:
+- Make sure that the script is [located in the path](https://superuser.com/a/284351/62691) and [is executable](https://askubuntu.com/a/229592/18504).
 
-  ```bash
-  sudo apt-get install python3-msal python3-keyring
-  ```
-
-  On Fedora run:
+- Install the required pip modules:
 
   ```bash
-  sudo dnf install python-msal python-keyring
+  pip install msal keyring trustme PyQt6 PyQt6-WebEngine
   ```
-
-  On other distros:
-
-  ```bash
-  pip install msal keyring
-  ```
-
-- Place the script anywhere in your `$PATH`, like `/usr/local/bin`.
 
 ### Linux
 
@@ -79,18 +66,10 @@ sudo dnf install -y git-credential-outlook
   git credential-outlook --authenticate
   ```
 
-  The output should be something like this:
-
+- You can also add `--device` to authenticate on another device like in case of systems without a GUI.
   ```bash
-  user@hostname:~$ git credential-outlook --authenticate
-  Choose an authentication method:
-  1. Open your browser and login.
-  2. Paste a device code manually on a webpage.
-  Enter 1 or 2:
+  git credential-outlook --authenticate --device
   ```
-- Here we have 2 methods, clearly mentioned in the above message. You simply have to follow the on-screen instructions after choosing any one.
-
-  **Note: The first method if choosen will show an error of certificate not being valid after authentication. This is normal and expected since a self generated SSL certificate has been used to authenticate here. You can safely proceed further here.**
 
 ## Usage
 
