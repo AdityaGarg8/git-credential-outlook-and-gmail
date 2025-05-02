@@ -1,0 +1,29 @@
+Name:           git-credential-gmail
+Version:        2.1
+Release:        1%{?dist}
+Summary:        Git credential helper for Gmail accounts.
+
+License:        Apache-2.0
+URL:            https://github.com/AdityaGarg8/git-credential-outlook-and-gmail
+Source0:        %{url}/archive/refs/tags/v2.1.tar.gz
+
+BuildArch:      noarch
+Requires:       python-keyring
+Requires:       python-pyqt6
+Requires:       python-pyqt6-webengine
+
+%description
+Git credential helper for Gmail accounts.
+
+%prep
+%autosetup -n git-credential-outlook-and-gmail-2.1
+
+%build
+
+%install
+install -D -m0755 git-credential-gmail %{buildroot}%{_bindir}/git-credential-gmail
+
+%files
+%license LICENSE NOTICE
+%doc README.md
+%{_bindir}/git-credential-gmail
