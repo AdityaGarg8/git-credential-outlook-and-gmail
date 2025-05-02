@@ -63,8 +63,8 @@ jobs:
           Version: ${{ github.event.inputs.version }}
           Section: utils
           Priority: optional
-          Depends: python3-msal, python3-keyring, python3-trustme, python3-pyqt6, python3-pyqt6.qtwebengine
-          Enhances: git
+          Depends: git-email, python3-msal, python3-keyring, python3-trustme, python3-pyqt6, python3-pyqt6.qtwebengine
+          Enhances: git-email
           Architecture: all
           Maintainer: Aditya Garg <gargaditya08@live.com>
           Description: Git credential helper for Microsoft Outlook accounts.
@@ -120,8 +120,8 @@ jobs:
           Version: ${{ github.event.inputs.version }}
           Section: utils
           Priority: optional
-          Depends: python3-keyring, python3-pyqt6, python3-pyqt6.qtwebengine
-          Enhances: git
+          Depends: git-email, python3-keyring, python3-pyqt6, python3-pyqt6.qtwebengine
+          Enhances: git-email
           Architecture: all
           Maintainer: Aditya Garg <gargaditya08@live.com>
           Description: Git credential helper for Gmail accounts.
@@ -167,6 +167,7 @@ jobs:
           Source0:        %{url}/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
 
           BuildArch:      noarch
+          Requires:       git-email
           Requires:       python-msal
           Requires:       python-keyring
           Requires:       python-trustme
@@ -226,6 +227,7 @@ jobs:
           Source0:        %{url}/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
 
           BuildArch:      noarch
+          Requires:       git-email
           Requires:       python-keyring
           Requires:       python-pyqt6
           Requires:       python-pyqt6-webengine
