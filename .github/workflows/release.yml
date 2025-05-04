@@ -271,18 +271,23 @@ jobs:
       - name: "Checkout Repo"
         uses: actions/checkout@v4
 
+      - name: Get SHA256SUM
+        id: compute_sha
+        run: |
+          wget https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
+          SHASUM=$(sha256sum ./v${{ github.event.inputs.version }}.tar.gz | cut -d " " -f 1 | xargs)
+          echo "sha=$SHASUM" >> $GITHUB_ENV
+
       - name: Release
         id: publish
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          wget https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
-          SHASUM=$(sha256sum ./v${{ github.event.inputs.version }}.tar.gz | cut -d " " -f 1 | xargs)
           git clone https://github.com/AdityaGarg8/homebrew-git-credential-outlook-and-gmail
           cd homebrew-git-credential-outlook-and-gmail
           sed -i -E \
           -e 's|url "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v[0-9]+(\.[0-9]+)+\.tar\.gz"|url "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz"|' \
-          -e '0,/sha256 "[a-f0-9]{64}"/s//sha256 "$SHASUM"/' \
+          -e '0,/sha256 "[a-f0-9]{64}"/s//sha256 "${{ env.sha }}"/' \
           git-credential-outlook.rb git-credential-gmail.rb
           cd ..
           
