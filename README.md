@@ -31,7 +31,7 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP and htt
   pip install keyring PyQt6 PyQt6-WebEngine
   ```
 
-  **NOTE: DUE TO A [BUG](https://bugreports.qt.io/plugins/servlet/mobile#issue/QTBUG-135786) IN qt 6.9, THE AUTHENTICATION METHOD IS BROKEN FOR THIS PROJECT. APPARENTLY, IT HAS AFFECTED MANY qt6 BASED PROJECTS [(SEE THIS)](https://github.com/qutebrowser/qutebrowser/issues/8535). TILL THEN, INSTALL AN OLDER VERSION OF `PyQt6` and `PyQt6-WebEngine` by running:
+  **NOTE: DUE TO A [BUG](https://bugreports.qt.io/plugins/servlet/mobile#issue/QTBUG-135786) IN qt 6.9, THE AUTHENTICATION METHOD IS BROKEN FOR THIS PROJECT. APPARENTLY, IT HAS AFFECTED MANY qt6 BASED PROJECTS [(SEE THIS)](https://github.com/qutebrowser/qutebrowser/issues/8535). TILL THEN, INSTALL AN OLDER VERSION OF `PyQt6` and `PyQt6-WebEngine` by running:**
 
   ```bash
   pip install PyQt6==6.8.1 PyQt6-WebEngine==6.8.0
