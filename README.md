@@ -68,6 +68,15 @@ sudo dnf copr enable -y adityagarg8/git-credential-outlook-and-gmail
 sudo dnf install -y git-credential-outlook git-credential-gmail
 ```
 
+### macOS
+
+[Install Homebrew](https://brew.sh/). Then run the following to add the brew tap and install the `git-credential-outlook` and `git-credential-gmail` package:
+
+```bash
+brew tap adityagarg8/git-credential-outlook-and-gmail
+brew install git-credential-outlook git-credential-gmail
+```
+
 ## Setting up
 
 ### Outlook
