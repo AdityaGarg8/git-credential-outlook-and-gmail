@@ -281,7 +281,7 @@ jobs:
           git clone https://github.com/AdityaGarg8/homebrew-git-credential-outlook-and-gmail
           cd homebrew-git-credential-outlook-and-gmail
           sed -i -E \
-          -e 's|url "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v[0-9]+\.[0-9]+\.tar\.gz"|url "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz"|' \
+          -e 's|url "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v[0-9]+(\.[0-9]+)+\.tar\.gz"|url "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz"|' \
           -e '0,/sha256 "[a-f0-9]{64}"/s//sha256 "$SHASUM"/' \
           git-credential-outlook.rb git-credential-gmail.rb
           cd ..
