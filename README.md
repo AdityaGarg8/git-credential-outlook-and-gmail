@@ -131,4 +131,4 @@ sudo dnf install -y git-credential-outlook git-credential-gmail
         smtpAuth = OAUTHBEARER
   ```
 
-  **Note: Make sure you have atleast version 2.1800 of perl's [Authen::SASL](https://metacpan.org/dist/Authen-SASL) library in order to be able to use XOAUTH2 and OAUTHBEARER**
+  **Note: Make sure you have atleast version 2.1800 of perl's [Authen::SASL](https://metacpan.org/dist/Authen-SASL) library in order to be able to use XOAUTH2 and OAUTHBEARER.**
