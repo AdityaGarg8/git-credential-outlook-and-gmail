@@ -1,5 +1,5 @@
 ---
-name: Release - Debian and Fedora
+name: Release
 
 on:
   workflow_dispatch:
@@ -264,3 +264,37 @@ jobs:
           curl -sS -X POST $COPR_WEBHOOK/git-credential-gmail
         env:
           COPR_WEBHOOK: ${{ secrets.COPR_WEBHOOK }}
+  Release-Homebrew:
+    needs: [Release-GitHub]
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repo"
+        uses: actions/checkout@v4
+
+      - name: Release
+        id: publish
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          wget https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
+          SHASUM=$(sha256sum ./v${{ github.event.inputs.version }}.tar.gz | cut -d " " -f 1 | xargs)
+          git clone https://github.com/AdityaGarg8/homebrew-git-credential-outlook-and-gmail
+          cd homebrew-git-credential-outlook-and-gmail
+          sed -i -E \
+          -e 's|url "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v[0-9]+\.[0-9]+\.tar\.gz"|url "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz"|' \
+          -e '0,/sha256 "[a-f0-9]{64}"/s//sha256 "$SHASUM"/' \
+          git-credential-outlook.rb git-credential-gmail.rb
+          cd ..
+          
+      - name: Publish to repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT }}
+        with:
+          source-directory: 'homebrew-git-credential-outlook-and-gmail'
+          destination-github-username: 'AdityaGarg8'
+          destination-repository-name: 'homebrew-git-credential-outlook-and-gmail'
+          user-email: github-actions[bot]@users.noreply.github.com
+          user-name: github-actions[bot]
+          target-branch: main
+          commit-message: Update credential helpers to v${{ github.event.inputs.version }}
