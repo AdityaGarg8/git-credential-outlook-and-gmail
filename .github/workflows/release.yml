@@ -76,7 +76,7 @@ jobs:
           dpkg-deb --build --root-owner-group -Zgzip cred
           dpkg-name cred.deb
 
-          gh release download debian -D debian -R AdityaGarg8/git-credential-outlook-and-gmail
+          gh release download debian -D debian -R AdityaGarg8/git-credential-email
           mv -v ./*.deb ./debian
           cd debian
           dpkg-scanpackages --multiversion . > Packages
@@ -85,7 +85,7 @@ jobs:
           apt-ftparchive release . > Release
           gpg --default-key "${GPG_SIGNING_EMAIL}" -abs -o - Release > Release.gpg
           gpg --default-key "${GPG_SIGNING_EMAIL}" --clearsign -o - Release > InRelease
-          gh release upload debian ./* --clobber -R AdityaGarg8/git-credential-outlook-and-gmail
+          gh release upload debian ./* --clobber -R AdityaGarg8/git-credential-email
         env:
           GPG_SIGNING_EMAIL: ${{ secrets.GPG_SIGNING_EMAIL }}
           GH_TOKEN: ${{ secrets.PAT }}
@@ -133,7 +133,7 @@ jobs:
           dpkg-deb --build --root-owner-group -Zgzip cred
           dpkg-name cred.deb
 
-          gh release download debian -D debian -R AdityaGarg8/git-credential-outlook-and-gmail
+          gh release download debian -D debian -R AdityaGarg8/git-credential-email
           mv -v ./*.deb ./debian
           cd debian
           dpkg-scanpackages --multiversion . > Packages
@@ -142,7 +142,7 @@ jobs:
           apt-ftparchive release . > Release
           gpg --default-key "${GPG_SIGNING_EMAIL}" -abs -o - Release > Release.gpg
           gpg --default-key "${GPG_SIGNING_EMAIL}" --clearsign -o - Release > InRelease
-          gh release upload debian ./* --clobber -R AdityaGarg8/git-credential-outlook-and-gmail
+          gh release upload debian ./* --clobber -R AdityaGarg8/git-credential-email
         env:
           GPG_SIGNING_EMAIL: ${{ secrets.GPG_SIGNING_EMAIL }}
           GH_TOKEN: ${{ secrets.PAT }}
@@ -163,7 +163,7 @@ jobs:
           Summary:        Git credential helper for Microsoft Outlook accounts.
 
           License:        Apache-2.0
-          URL:            https://github.com/AdityaGarg8/git-credential-outlook-and-gmail
+          URL:            https://github.com/AdityaGarg8/git-credential-email
           Source0:        %{url}/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
 
           BuildArch:      noarch
@@ -178,7 +178,7 @@ jobs:
           Git credential helper for Microsoft Outlook accounts.
 
           %prep
-          %autosetup -n git-credential-outlook-and-gmail-${{ github.event.inputs.version }}
+          %autosetup -n git-credential-email-${{ github.event.inputs.version }}
 
           %build
 
@@ -223,7 +223,7 @@ jobs:
           Summary:        Git credential helper for Gmail accounts.
 
           License:        Apache-2.0
-          URL:            https://github.com/AdityaGarg8/git-credential-outlook-and-gmail
+          URL:            https://github.com/AdityaGarg8/git-credential-email
           Source0:        %{url}/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
 
           BuildArch:      noarch
@@ -236,7 +236,7 @@ jobs:
           Git credential helper for Gmail accounts.
 
           %prep
-          %autosetup -n git-credential-outlook-and-gmail-${{ github.event.inputs.version }}
+          %autosetup -n git-credential-email-${{ github.event.inputs.version }}
 
           %build
 
@@ -274,7 +274,7 @@ jobs:
       - name: Get SHA256SUM
         id: compute_sha
         run: |
-          wget https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
+          wget https://github.com/AdityaGarg8/git-credential-email/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz
           SHASUM=$(sha256sum ./v${{ github.event.inputs.version }}.tar.gz | cut -d " " -f 1 | xargs)
           echo "sha=$SHASUM" >> $GITHUB_ENV
 
@@ -283,10 +283,10 @@ jobs:
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git clone https://github.com/AdityaGarg8/homebrew-git-credential-outlook-and-gmail
-          cd homebrew-git-credential-outlook-and-gmail
+          git clone https://github.com/AdityaGarg8/homebrew-git-credential-email
+          cd homebrew-git-credential-email
           sed -i -E \
-          -e 's|url "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v[0-9]+(\.[0-9]+)+\.tar\.gz"|url "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz"|' \
+          -e 's|url "https://github.com/AdityaGarg8/git-credential-email/archive/refs/tags/v[0-9]+(\.[0-9]+)+\.tar\.gz"|url "https://github.com/AdityaGarg8/git-credential-email/archive/refs/tags/v${{ github.event.inputs.version }}.tar.gz"|' \
           -e '0,/sha256 "[a-f0-9]{64}"/s//sha256 "${{ env.sha }}"/' \
           git-credential-outlook.rb git-credential-gmail.rb
           cd ..
@@ -296,9 +296,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAT }}
         with:
-          source-directory: 'homebrew-git-credential-outlook-and-gmail'
+          source-directory: 'homebrew-git-credential-email'
           destination-github-username: 'AdityaGarg8'
-          destination-repository-name: 'homebrew-git-credential-outlook-and-gmail'
+          destination-repository-name: 'homebrew-git-credential-email'
           user-email: github-actions[bot]@users.noreply.github.com
           user-name: github-actions[bot]
           target-branch: main
