@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version of the deb and rpm package'
+        description: 'Version'
         required: true
 
 jobs:
