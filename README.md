@@ -1,4 +1,4 @@
-# git-credential-outlook-and-gmail
+# git-credential-email
 
 Git credential helpers to get OAauth2 token for Microsoft Outlook and Gmail accounts.
 
@@ -50,11 +50,11 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP and htt
 Run the following to add the apt repo and install the `git-credential-outlook` and `git-credential-gmail` package:
 
 ```bash
-curl -L "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/download/debian/KEY.gpg" \
-	| gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/git-credential-outlook-and-gmail.gpg >/dev/null \
-	&& echo "deb [signed-by=/etc/apt/trusted.gpg.d/git-credential-outlook-and-gmail.gpg] \
-	https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/download/debian ./" \
-	| sudo tee -a /etc/apt/sources.list.d/git-credential-outlook-and-gmail.list \
+curl -L "https://github.com/AdityaGarg8/git-credential-email/releases/download/debian/KEY.gpg" \
+	| gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/git-credential-email.gpg >/dev/null \
+	&& echo "deb [signed-by=/etc/apt/trusted.gpg.d/git-credential-email.gpg] \
+	https://github.com/AdityaGarg8/git-credential-email/releases/download/debian ./" \
+	| sudo tee -a /etc/apt/sources.list.d/git-credential-email.list \
 	&& sudo apt-get update \
 	&& sudo apt-get install -y git-credential-outlook git-credential-gmail
 ```
@@ -64,7 +64,7 @@ curl -L "https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/release
 Run the following to add the copr repo and install the `git-credential-outlook` and `git-credential-gmail` package:
 
 ```bash
-sudo dnf copr enable -y adityagarg8/git-credential-outlook-and-gmail
+sudo dnf copr enable -y adityagarg8/git-credential-email
 sudo dnf install -y git-credential-outlook git-credential-gmail
 ```
 
@@ -73,7 +73,7 @@ sudo dnf install -y git-credential-outlook git-credential-gmail
 [Install Homebrew](https://brew.sh/). Then run the following to add the brew tap and install the `git-credential-outlook` and `git-credential-gmail` package:
 
 ```bash
-brew tap adityagarg8/git-credential-outlook-and-gmail
+brew tap adityagarg8/git-credential-email
 brew install git-credential-outlook git-credential-gmail
 ```
 
