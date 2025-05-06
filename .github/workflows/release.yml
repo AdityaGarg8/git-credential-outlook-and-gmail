@@ -63,7 +63,7 @@ jobs:
           Version: ${{ github.event.inputs.version }}
           Section: utils
           Priority: optional
-          Depends: git-email, python3-msal, python3-keyring, python3-trustme, python3-pyqt6, python3-pyqt6.qtwebengine
+          Depends: git-email, python3-msal, python3-keyring, python3-pyqt6, python3-pyqt6.qtwebengine
           Enhances: git-email
           Architecture: all
           Maintainer: Aditya Garg <gargaditya08@live.com>
@@ -170,7 +170,6 @@ jobs:
           Requires:       git-email
           Requires:       python-msal
           Requires:       python-keyring
-          Requires:       python-trustme
           Requires:       python-pyqt6
           Requires:       python-pyqt6-webengine
 

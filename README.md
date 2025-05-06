@@ -37,10 +37,10 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP and htt
   pip install PyQt6==6.8.1 PyQt6-WebEngine==6.8.0
   ```
 
-- For **Outlook**, you also need to install these modules:
+- For **Outlook**, you also need to install `msal`:
 
   ```bash
-  pip install msal trustme
+  pip install msal
   ```
 
 ### Linux
