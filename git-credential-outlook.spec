@@ -1,17 +1,16 @@
 Name:           git-credential-outlook
-Version:        2.3.2
+Version:        3.0
 Release:        1%{?dist}
 Summary:        Git credential helper for Microsoft Outlook accounts.
 
 License:        Apache-2.0
 URL:            https://github.com/AdityaGarg8/git-credential-email
-Source0:        %{url}/archive/refs/tags/v2.3.2.tar.gz
+Source0:        %{url}/archive/refs/tags/v3.0.tar.gz
 
 BuildArch:      noarch
 Requires:       git-email
 Requires:       python-msal
 Requires:       python-keyring
-Requires:       python-trustme
 Requires:       python-pyqt6
 Requires:       python-pyqt6-webengine
 
@@ -19,7 +18,7 @@ Requires:       python-pyqt6-webengine
 Git credential helper for Microsoft Outlook accounts.
 
 %prep
-%autosetup -n git-credential-email-2.3.2
+%autosetup -n git-credential-email-3.0
 
 %build
 
