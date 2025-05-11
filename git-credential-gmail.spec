@@ -1,11 +1,11 @@
 Name:           git-credential-gmail
-Version:        3.0
+Version:        3.0.1
 Release:        1%{?dist}
 Summary:        Git credential helper for Gmail accounts.
 
 License:        Apache-2.0
 URL:            https://github.com/AdityaGarg8/git-credential-email
-Source0:        %{url}/archive/refs/tags/v3.0.tar.gz
+Source0:        %{url}/archive/refs/tags/v3.0.1.tar.gz
 
 BuildArch:      noarch
 Requires:       git-email
@@ -17,7 +17,7 @@ Requires:       python-pyqt6-webengine
 Git credential helper for Gmail accounts.
 
 %prep
-%autosetup -n git-credential-email-3.0
+%autosetup -n git-credential-email-3.0.1
 
 %build
 
