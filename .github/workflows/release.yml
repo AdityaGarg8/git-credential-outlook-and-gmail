@@ -215,7 +215,7 @@ jobs:
       - name: Release
         id: publish
         run: |
-          cat <<EOF  > ./git-credential-outlook.spec
+          cat <<EOF  > ./fedora/git-credential-outlook.spec
           Name:           git-credential-outlook
           Version:        ${{ github.event.inputs.version }}
           Release:        1%{?dist}
@@ -274,7 +274,7 @@ jobs:
       - name: Release
         id: publish
         run: |
-          cat <<EOF  > ./git-credential-gmail.spec
+          cat <<EOF  > ./fedora/git-credential-gmail.spec
           Name:           git-credential-gmail
           Version:        ${{ github.event.inputs.version }}
           Release:        1%{?dist}
@@ -332,7 +332,7 @@ jobs:
       - name: Release
         id: publish
         run: |
-          cat <<EOF  > ./git-credential-yahoo.spec
+          cat <<EOF  > ./fedora/git-credential-yahoo.spec
           Name:           git-credential-yahoo
           Version:        ${{ github.event.inputs.version }}
           Release:        1%{?dist}
