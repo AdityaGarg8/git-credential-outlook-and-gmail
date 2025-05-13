@@ -84,7 +84,7 @@ In order to use OAuth2.0, you need to provide an OAuth 2.0 `client_id` and a `cl
 
 If not configured, it will use Thunderbird's `client_id` and `client_secret` by default.
 
-The helpers include the client credentials for the following popular email clients:
+The helpers include the client credentials of the following popular email clients:
 
 - Thunderbird
 - GNOME Evolution
