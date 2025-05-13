@@ -31,6 +31,7 @@ jobs:
             ${{ github.workspace }}/git-credential-yahoo
           tag_name: "v${{ github.event.inputs.version }}"
           draft: false
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Release-Debian-Outlook:
