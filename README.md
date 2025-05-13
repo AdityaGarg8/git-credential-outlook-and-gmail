@@ -210,3 +210,11 @@ git-credential-gmail --delete-client
   ```
 
   **Note: Make sure you have atleast version 2.1800 of perl's [Authen::SASL](https://metacpan.org/dist/Authen-SASL) library in order to be able to use XOAUTH2 and OAUTHBEARER.**
+
+## Deleting the stored authentication details
+
+In case you want to delete the refresh token, that was stored by the helper, as mentioned [here](#authenticating-with-your-email-provider), simply run (taking `git-credential-gmail` as an example):
+
+```bash
+git-credential-gmail --delete-token
+```
