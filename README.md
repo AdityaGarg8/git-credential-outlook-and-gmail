@@ -29,19 +29,19 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP and htt
 - Install the required pip modules:
 
   ```bash
-  pip install keyring PyQt6 PyQt6-WebEngine
-  ```
-
-  **NOTE: DUE TO A [BUG](https://bugreports.qt.io/plugins/servlet/mobile#issue/QTBUG-135786) IN qt 6.9, THE AUTHENTICATION METHOD IS BROKEN FOR THIS PROJECT. APPARENTLY, IT HAS AFFECTED MANY qt6 BASED PROJECTS [(SEE THIS)](https://github.com/qutebrowser/qutebrowser/issues/8535). TILL THEN, INSTALL AN OLDER VERSION OF `PyQt6` and `PyQt6-WebEngine` by running:**
-
-  ```bash
-  pip install PyQt6==6.8.1 PyQt6-WebEngine==6.8.0
+  pip install keyring
   ```
 
 - For **Outlook**, you also need to install `msal`:
 
   ```bash
   pip install msal
+  ```
+
+- For a more seamless authentication, you can **optionally** install `PyQt6-Webengine` by running:
+
+  ```bash
+  pip install PyQt6-WebEngine==6.8.0
   ```
 
 ### Linux
@@ -60,6 +60,12 @@ curl -L "https://github.com/AdityaGarg8/git-credential-email/releases/download/d
 	&& sudo apt-get install -y git-credential-gmail git-credential-outlook git-credential-yahoo
 ```
 
+For a more seamless authentication, you can **optionally** install `PyQt6-Webengine` by running:
+
+```bash
+sudo apt-get install -y python3-pyqt6.qtwebengine
+```
+
 #### Fedora
 
 Run the following to add the copr repo and install the `git-credential-gmail`, `git-credential-outlook` and `git-credential-yahoo` package:
@@ -69,6 +75,12 @@ sudo dnf copr enable -y adityagarg8/git-credential-email
 sudo dnf install -y git-credential-gmail git-credential-outlook git-credential-yahoo
 ```
 
+For a more seamless authentication, you can **optionally** install `PyQt6-Webengine` by running:
+
+```bash
+sudo dnf install -y python-pyqt6-webengine
+```
+
 ### macOS
 
 [Install Homebrew](https://brew.sh/). Then run the following to add the brew tap and install the `git-credential-gmail`, `git-credential-outlook` and `git-credential-yahoo` package:
@@ -76,6 +88,12 @@ sudo dnf install -y git-credential-gmail git-credential-outlook git-credential-y
 ```bash
 brew tap adityagarg8/git-credential-email
 brew install git-credential-gmail git-credential-outlook git-credential-yahoo
+```
+
+For a more seamless authentication, you can **optionally** install `PyQt6` by running:
+
+```bash
+brew install pyqt@6
 ```
 
 ## Setting up OAuth 2.0 client credentials

@@ -65,7 +65,7 @@ jobs:
           Version: ${{ github.event.inputs.version }}
           Section: utils
           Priority: optional
-          Depends: git-email, python3-msal, python3-keyring, python3-pyqt6, python3-pyqt6.qtwebengine
+          Depends: git-email, python3-msal, python3-keyring
           Enhances: git-email
           Architecture: all
           Maintainer: Aditya Garg <gargaditya08@live.com>
@@ -122,7 +122,7 @@ jobs:
           Version: ${{ github.event.inputs.version }}
           Section: utils
           Priority: optional
-          Depends: git-email, python3-keyring, python3-pyqt6, python3-pyqt6.qtwebengine
+          Depends: git-email, python3-keyring
           Enhances: git-email
           Architecture: all
           Maintainer: Aditya Garg <gargaditya08@live.com>
@@ -179,7 +179,7 @@ jobs:
           Version: ${{ github.event.inputs.version }}
           Section: utils
           Priority: optional
-          Depends: git-email, python3-keyring, python3-pyqt6, python3-pyqt6.qtwebengine
+          Depends: git-email, python3-keyring
           Enhances: git-email
           Architecture: all
           Maintainer: Aditya Garg <gargaditya08@live.com>
@@ -229,8 +229,6 @@ jobs:
           Requires:       git-email
           Requires:       python-msal
           Requires:       python-keyring
-          Requires:       python-pyqt6
-          Requires:       python-pyqt6-webengine
 
           %description
           Git credential helper for Microsoft Outlook accounts.
@@ -287,8 +285,6 @@ jobs:
           BuildArch:      noarch
           Requires:       git-email
           Requires:       python-keyring
-          Requires:       python-pyqt6
-          Requires:       python-pyqt6-webengine
 
           %description
           Git credential helper for Gmail accounts.
@@ -345,8 +341,6 @@ jobs:
           BuildArch:      noarch
           Requires:       git-email
           Requires:       python-keyring
-          Requires:       python-pyqt6
-          Requires:       python-pyqt6-webengine
 
           %description
           Git credential helper for Yahoo accounts.
