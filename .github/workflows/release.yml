@@ -413,3 +413,43 @@ jobs:
           user-name: github-actions[bot]
           target-branch: main
           commit-message: Update credential helpers to v${{ github.event.inputs.version }}
+  Release-Windows:
+    needs: [Release-GitHub]
+    runs-on: windows-latest
+    steps:
+      - name: "Checkout Repo"
+        uses: actions/checkout@v4
+
+      - name: Release
+        id: publish
+        run: |
+          New-Item -ItemType Directory -Path outlook
+          New-Item -ItemType Directory -Path gmail
+          New-Item -ItemType Directory -Path yahoo
+          pip install pyinstaller msal keyring
+          Copy-Item -Path .\git-credential-outlook -Destination .\outlook
+          Copy-Item -Path .\git-credential-gmail -Destination .\gmail
+          Copy-Item -Path .\git-credential-yahoo -Destination .\yahoo
+          cd outlook
+          pyinstaller git-credential-outlook --exclude-module PyQt6 --icon=NONE --contents-directory gco-resources
+          cd ..
+          cd gmail
+          pyinstaller git-credential-gmail --exclude-module PyQt6 --icon=NONE --contents-directory gcg-resources
+          cd ..
+          cd yahoo
+          pyinstaller git-credential-yahoo --exclude-module PyQt6 --icon=NONE --contents-directory gcy-resources
+          cd ..
+          Compress-Archive -Path .\outlook\dist\git-credential-outlook\* -DestinationPath git-credential-outlook_win64.zip
+          Compress-Archive -Path .\gmail\dist\git-credential-gmail\* -DestinationPath git-credential-gmail_win64.zip
+          Compress-Archive -Path .\yahoo\dist\git-credential-yahoo\* -DestinationPath git-credential-yahoo_win64.zip
+      - name: Release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ github.workspace }}/*.zip
+          tag_name: "v${{ github.event.inputs.version }}"
+          draft: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
