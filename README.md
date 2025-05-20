@@ -22,7 +22,7 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP and htt
 
 ### All platforms
 
-- Download the python script `git-credential-gmail`, `git-credential-outlook` and/or `git-credential-yahoo` from [here](https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/latest).
+- Download the python script `git-credential-gmail`, `git-credential-outlook` and/or `git-credential-yahoo` from [here](https://github.com/AdityaGarg8/git-credential-email/releases/latest).
 
 - Make sure that the script is [located in the path](https://superuser.com/a/284351/62691) and [is executable](https://askubuntu.com/a/229592/18504).
 
@@ -98,7 +98,7 @@ brew install pyqt@6
 
 ### Windows
 
-Precompiled binaries for Windows are available. You can download the zip containing them from [here](https://github.com/AdityaGarg8/git-credential-outlook-and-gmail/releases/latest). Extract all the contents of the zip [in your path](https://superuser.com/a/284351/62691). `%ProgramFiles%\Git\mingw64\libexec\git-core` is also a part of `%PATH%` when git is installed on Windows. As an example, to install `git-credential-gmail` on Windows over there, open **Command Prompt as administrator** and run the following:
+Precompiled binaries for Windows are available. You can download the zip containing them from [here](https://github.com/AdityaGarg8/git-credential-email/releases/latest). Extract all the contents of the zip [in your path](https://superuser.com/a/284351/62691). `%ProgramFiles%\Git\mingw64\libexec\git-core` is also a part of `%PATH%` when git is installed on Windows. As an example, to install `git-credential-gmail` on Windows over there, open **Command Prompt as administrator** and run the following:
 
 ```batch
 curl -L -o %temp%\cred.zip https://github.com/AdityaGarg8/git-credential-email/releases/latest/download/git-credential-gmail_win64.zip
@@ -119,10 +119,10 @@ The helpers include the client credentials of the following popular email client
 - GNOME Evolution
 - GNOME Online Accounts (only available for Gmail)
 
-In order to set the client credentials of your choice, run (taking `git-credential-gmail` as an example):
+In order to set the client credentials of your choice, run (taking `git credential-gmail` as an example):
 
 ```bash
-git-credential-gmail --set-client
+git credential-gmail --set-client
 ```
 
 Here you can either choose from the pre-configured client credentials, or choose to use your own registered client. Instructions for registering your own client are given below:
@@ -134,7 +134,7 @@ Here you can either choose from the pre-configured client credentials, or choose
 In case you want to delete the client credentials you stored and go back to the default behaviour, run:
 
 ```bash
-git-credential-gmail --delete-client
+git credential-gmail --delete-client
 ```
 
 ## Authenticating with your email provider
@@ -242,8 +242,8 @@ git-credential-gmail --delete-client
 
 ## Deleting the stored authentication details
 
-In case you want to delete the refresh token, that was stored by the helper, as mentioned [here](#authenticating-with-your-email-provider), simply run (taking `git-credential-gmail` as an example):
+In case you want to delete the refresh token, that was stored by the helper, as mentioned [here](#authenticating-with-your-email-provider), simply run (taking `git credential-gmail` as an example):
 
 ```bash
-git-credential-gmail --delete-token
+git credential-gmail --delete-token
 ```
