@@ -1,3 +1,21 @@
+# TEST BRANCH FOR USING MSGRAPH WITH GIT SEND-EMAIL
+
+1. Download `git-credential-msgraph` from https://raw.githubusercontent.com/AdityaGarg8/git-credential-email/refs/heads/msgraph/git-credential-msgraph
+2. Install keyring module: `pip install keyring`
+3. Copy `git-credential-msgraph` to your $PATH and make it executable.
+4. Run `git-credential-msgraph --authenticate` and follow on screen instructions.
+5. Set this to your config:
+
+  ```config
+  [credential "https://graph.microsoft.com"]
+        helper = msgraph
+  [sendemail]
+        useMSGraph = true
+        MSGraphUser = yourname@outlook.com
+  ```
+6. Try sending a patch.
+
+
 # git-credential-email
 
 Git credential helpers to get OAauth2 token for Microsoft Outlook, Gmail and Yahoo accounts.
