@@ -32,12 +32,6 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP and htt
   pip install keyring
   ```
 
-- For a more seamless **first-time authentication only**, you can **optionally** install `PyQt6-Webengine` by running:
-
-  ```bash
-  pip install PyQt6-WebEngine==6.8.0
-  ```
-
 ### Linux
 
 #### Ubuntu/Debian
@@ -54,12 +48,6 @@ curl -L "https://github.com/AdityaGarg8/git-credential-email/releases/download/d
 	&& sudo apt-get install -y git-credential-gmail git-credential-outlook git-credential-yahoo
 ```
 
-For a more seamless **first-time authentication only**, you can **optionally** install `PyQt6-Webengine` by running:
-
-```bash
-sudo apt-get install -y python3-pyqt6.qtwebengine
-```
-
 #### Fedora
 
 Run the following to add the copr repo and install the `git-credential-gmail`, `git-credential-outlook` and `git-credential-yahoo` package:
@@ -67,12 +55,6 @@ Run the following to add the copr repo and install the `git-credential-gmail`, `
 ```bash
 sudo dnf copr enable -y adityagarg8/git-credential-email
 sudo dnf install -y git-credential-gmail git-credential-outlook git-credential-yahoo
-```
-
-For a more seamless **first-time authentication only**, you can **optionally** install `PyQt6-Webengine` by running:
-
-```bash
-sudo dnf install -y python-pyqt6-webengine
 ```
 
 ### macOS
@@ -84,12 +66,6 @@ brew tap adityagarg8/git-credential-email
 brew install git-credential-gmail git-credential-outlook git-credential-yahoo
 ```
 
-For a more seamless **first-time authentication only**, you can **optionally** install `PyQt6` by running:
-
-```bash
-brew install pyqt@6
-```
-
 ### Windows
 
 Precompiled binaries for Windows are available. You can download the zip containing them from [here](https://github.com/AdityaGarg8/git-credential-email/releases/latest). Extract all the contents of the zip [in your path](https://superuser.com/a/284351/62691). `%ProgramFiles%\Git\mingw64\libexec\git-core` is also a part of `%PATH%` when git is installed on Windows. As an example, to install `git-credential-gmail` on Windows over there, open **Command Prompt as administrator** and run the following:
@@ -99,11 +75,9 @@ curl -L -o %temp%\cred.zip https://github.com/AdityaGarg8/git-credential-email/r
 tar -xf %temp%\cred.zip -C "%ProgramFiles%\Git\mingw64\libexec\git-core"
 ```
 
-Using `PyQt6`, is currently not possible with Windows binaries. If you want to use it, setup Python for Windows and follow the [All platforms](#all-platforms) section instead of using binaries. Note that `PyQt6` provides seemless authentication for **first-time authentication only**. Once the refresh token is saved, further process of acquiring access tokens when running `git send-email` remains the same, and is not dependent on `PyQt6`.
-
 ## Setting up OAuth 2.0 client credentials
 
-In order to use OAuth2.0, you need to provide an OAuth 2.0 `client_id` and a `client_secret` (optional in Outlook) to allow the helper to authenticate with email servers on your behalf.
+In order to use OAuth2.0, you need to provide an OAuth 2.0 `client_id` and a `client_secret` (not needed in Outlook) to allow the helper to authenticate with email servers on your behalf.
 
 If not configured, it will use Thunderbird's `client_id` and `client_secret` by default.
 
