@@ -65,7 +65,7 @@ jobs:
           Version: ${{ github.event.inputs.version }}
           Section: utils
           Priority: optional
-          Depends: git-email, python3-msal, python3-keyring
+          Depends: git-email, python3-keyring
           Enhances: git-email
           Architecture: all
           Maintainer: Aditya Garg <gargaditya08@live.com>
@@ -227,7 +227,6 @@ jobs:
 
           BuildArch:      noarch
           Requires:       git-email
-          Requires:       python-msal
           Requires:       python-keyring
 
           %description
@@ -426,7 +425,7 @@ jobs:
           New-Item -ItemType Directory -Path outlook
           New-Item -ItemType Directory -Path gmail
           New-Item -ItemType Directory -Path yahoo
-          pip install pyinstaller msal keyring
+          pip install pyinstaller keyring
           Copy-Item -Path .\git-credential-outlook -Destination .\outlook
           Copy-Item -Path .\git-credential-gmail -Destination .\gmail
           Copy-Item -Path .\git-credential-yahoo -Destination .\yahoo
