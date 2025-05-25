@@ -26,7 +26,7 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP and htt
 
 - Make sure that the script is [located in the path](https://superuser.com/a/284351/62691) and [is executable](https://askubuntu.com/a/229592/18504).
 
-- Install the required pip modules:
+- Install the `keyring` pip module:
 
   ```bash
   pip install keyring
