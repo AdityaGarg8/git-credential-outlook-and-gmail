@@ -32,12 +32,6 @@ It is a simple python script, based on https://github.com/ag91/M365-IMAP and htt
   pip install keyring
   ```
 
-- For **Outlook**, you also need to install `msal`:
-
-  ```bash
-  pip install msal
-  ```
-
 - For a more seamless **first-time authentication only**, you can **optionally** install `PyQt6-Webengine` by running:
 
   ```bash
