@@ -157,7 +157,7 @@ git credential-gmail --delete-client
 
 ## Usage
 
-- Once authenticated, the refresh token gets saved in your keyring. You can run `git credential-outlook` and/or `git credential-gmail` to confirm the same. It's output should now show an access token.
+- Once authenticated, the refresh token gets saved in your keyring. You can run `git credential-outlook`, `git credential-gmail` and/or `git credential-yahoo` to confirm the same. It's output should now show an access token.
 
 - Now run:
 
@@ -215,3 +215,16 @@ In case you want to delete the refresh token, that was stored by the helper, as 
 ```bash
 git credential-gmail --delete-token
 ```
+
+## Troubleshooting
+
+In case authentication fails:
+
+1. Try force refreshing the access token by running (taking `git credential-gmail` as an example):
+
+   ```
+   bash
+   git credential-gmail --force-refresh-token
+   ```
+
+2. If `--force-refresh-token` does not work, try [authenticating again](#authenticating-with-your-email-provider).
