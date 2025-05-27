@@ -12,11 +12,12 @@ They can be used with `git send-email`, especially when Outlook no longer suppor
 
 ## How does this work?
 
-It is a simple python script, based on https://github.com/ag91/M365-IMAP and https://github.com/google/gmail-oauth2-tools/blob/master/python/oauth2.py. It does the following:
+It is a simple python script, based on https://github.com/google/gmail-oauth2-tools/blob/master/python/oauth2.py. It does the following:
 
 - Uses an OAuth2.0 `client_id` and `client_secret` to authenticate with Microsoft/Google/Yahoo and retrieve a refresh token.
 - As per demand, it uses the refresh token to generate OAuth2 access tokens as and when required.
-- The refresh token is stored securely using the `keyring` module of pip. More information about this can be read from https://pypi.org/project/keyring/.
+- The refresh token and access token is stored securely using the `keyring` module of pip. More information about this can be read from https://pypi.org/project/keyring/.
+- Everytime the helper is called, it passes the stored access token to git. If the access token has expired, the helper first refreshes it automatically and passes the new access token.
 
 ## Installation
 
@@ -228,3 +229,10 @@ In case authentication fails:
    ```
 
 2. If `--force-refresh-token` does not work, try [authenticating again](#authenticating-with-your-email-provider).
+
+## References:
+
+- https://github.com/google/gmail-oauth2-tools/blob/master/python/oauth2.py (As a skeleton for all helpers and also Gmail support).
+- https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow (For Outlook).
+- https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code (For adding device flow support to Outlook).
+- https://developer.yahoo.com/oauth2/guide/flows_authcode/ (For Yahoo).
