@@ -1,6 +1,6 @@
 # git-credential-email
 
-Git credential helpers to get OAauth2 token for Microsoft Outlook, Gmail and Yahoo accounts.
+Git credential helpers to get OAuth2 token for Microsoft Outlook, Gmail and Yahoo accounts.
 
 This repo contains 3 helpers:
 
