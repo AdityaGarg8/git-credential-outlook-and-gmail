@@ -223,8 +223,7 @@ In case authentication fails:
 
 1. Try force refreshing the access token by running (taking `git credential-gmail` as an example):
 
-   ```
-   bash
+   ```bash
    git credential-gmail --force-refresh-token
    ```
 
