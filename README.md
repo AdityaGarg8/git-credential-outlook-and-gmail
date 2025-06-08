@@ -78,7 +78,7 @@ tar -xf %temp%\cred.zip -C "%ProgramFiles%\Git\mingw64\libexec\git-core"
 
 ## Setting up OAuth 2.0 client credentials
 
-In order to use OAuth2.0, you need to provide an OAuth 2.0 `client_id` and a `client_secret` (not needed in Outlook) to allow the helper to authenticate with email servers on your behalf.
+In order to use OAuth2.0, you need to provide an OAuth 2.0 `client_id` and a `client_secret` (secret not needed in Outlook) to allow the helper to authenticate with email servers on your behalf.
 
 If not configured, it will use Thunderbird's `client_id` and `client_secret` by default.
 
